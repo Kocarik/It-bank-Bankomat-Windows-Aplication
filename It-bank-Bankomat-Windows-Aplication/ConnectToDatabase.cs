@@ -19,7 +19,7 @@ namespace It_bank_Bankomat_Windows_Aplication
             database = "itBank8";
             uid = "Admin";
             password = "salama";
-            port = "3360";
+            port = "3306";
             string connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             connection = new MySqlConnection(connectionString);
         }
@@ -52,32 +52,25 @@ namespace It_bank_Bankomat_Windows_Aplication
             }
         }
 
-        public string selectCard()
+        public string getCardID()
         {
+            string cardID = null;
             if (openConnection())
             {
-                string cardId = null;
-                string sqlQuery = "select id from cards";
+                string sqlQuery = "select * from pinaccess";
                 MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
                 {
-                    cardId = reader["id"].ToString();
-                    closeConnection();
-                    return cardId;
+                    if (reader.Read())
+                    {
+                        cardID = reader["idc"] + "";
+                        return cardID;
+                    }
                 }
-
-                else
-                {
-                    return cardId;
-                }
-
             }
-
-            return null;
+            closeConnection();
+            return cardID;
         }
-
 
     }
 }

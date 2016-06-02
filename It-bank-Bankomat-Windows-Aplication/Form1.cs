@@ -12,14 +12,21 @@ namespace It_bank_Bankomat_Windows_Aplication
 {
     public partial class Form1 : Form
     {
-        public Form1(string cardID)
+        ConnectToDatabase db = new ConnectToDatabase();
+        string cardID;
+
+        public Form1()
         {
             InitializeComponent();
+            this.cardID = db.getCardID();
+            label1.Text = cardID;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label1.Visible = false;
+            label1.Visible = true;
+            lblBalance.Visible = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -79,17 +86,9 @@ namespace It_bank_Bankomat_Windows_Aplication
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if(txtPin.Text == "1234")
-            {
-                label1.Visible = true;
-                label1.Text = "PIN OK";
-            }
 
-            else
-            {
-                label1.Visible = true;
-                label1.Text = "BAD PIN";
-            }
         }
+
+
     }
 }
