@@ -75,12 +75,33 @@ namespace It_bank_Bankomat_Windows_Aplication
             return false;
         }
 
+        public string getAccountsID(string cardID)
+        {
+            string accountID = null;
+            if (openConnection())
+            {
+                string sqlQuery = "SELECT accounts.id FROM accounts inner join cards on accounts.id = cards.ida where cards.id like '" + cardID + "'"; ;
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        accountID = reader["id"] + "";
+                        closeConnection();
+                        return accountID;
+                    }
+                }
+            }
+            closeConnection();
+            return accountID;
+        }
+
         public string getBalance(string cardID)
         {
             string balance = null;
             if (openConnection())
             {
-                string sqlQuery = "SELECT balance FROM accounts inner join cards on accounts.id = cards.ida where cards.id like '" + cardID + "'"; ;
+                string sqlQuery = "SELECT accounts.id,balance FROM accounts inner join cards on accounts.id = cards.ida where cards.id like '" + cardID + "'";
                 MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 {
@@ -94,6 +115,21 @@ namespace It_bank_Bankomat_Windows_Aplication
             }
             closeConnection();
             return balance;
+        }
+
+
+        public bool updateBalance(string accountID, float balance)
+        {
+            if (openConnection())
+            {
+                string sqlQuery = "Update accounts set balance = balance -" + balance + " where Accounts.id like '" + accountID + "'";
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+                cmd.Parameters.AddWithValue("@balance", balance);
+                cmd.ExecuteNonQuery();
+                closeConnection();
+                return true;
+            }
+            return false;
         }
 
         // insert into bat acess

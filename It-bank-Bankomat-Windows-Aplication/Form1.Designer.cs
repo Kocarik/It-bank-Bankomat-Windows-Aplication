@@ -47,6 +47,7 @@
             this.lblCardID = new System.Windows.Forms.Label();
             this.txtCardID = new System.Windows.Forms.TextBox();
             this.lblYourBalance = new System.Windows.Forms.Label();
+            this.btnWithdraw = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -201,7 +202,7 @@
             this.lblBalance.AutoSize = true;
             this.lblBalance.BackColor = System.Drawing.Color.Transparent;
             this.lblBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblBalance.Location = new System.Drawing.Point(99, 36);
+            this.lblBalance.Location = new System.Drawing.Point(99, 42);
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(175, 37);
             this.lblBalance.TabIndex = 15;
@@ -229,17 +230,28 @@
             this.lblYourBalance.AutoSize = true;
             this.lblYourBalance.BackColor = System.Drawing.Color.Transparent;
             this.lblYourBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblYourBalance.Location = new System.Drawing.Point(106, 12);
+            this.lblYourBalance.Location = new System.Drawing.Point(106, 18);
             this.lblYourBalance.Name = "lblYourBalance";
             this.lblYourBalance.Size = new System.Drawing.Size(156, 24);
             this.lblYourBalance.TabIndex = 18;
             this.lblYourBalance.Text = "YOUR BALANCE";
+            // 
+            // btnWithdraw
+            // 
+            this.btnWithdraw.Location = new System.Drawing.Point(12, 141);
+            this.btnWithdraw.Name = "btnWithdraw";
+            this.btnWithdraw.Size = new System.Drawing.Size(156, 23);
+            this.btnWithdraw.TabIndex = 19;
+            this.btnWithdraw.Text = "Withdraw Form money";
+            this.btnWithdraw.UseVisualStyleBackColor = true;
+            this.btnWithdraw.Click += new System.EventHandler(this.btnWithdraw_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 361);
+            this.Controls.Add(this.btnWithdraw);
             this.Controls.Add(this.lblYourBalance);
             this.Controls.Add(this.lblBalance);
             this.Controls.Add(this.txtCardID);
@@ -290,6 +302,7 @@
         private System.Windows.Forms.Label lblCardID;
         private System.Windows.Forms.TextBox txtCardID;
         private System.Windows.Forms.Label lblYourBalance;
+        private System.Windows.Forms.Button btnWithdraw;
     }
 }
 

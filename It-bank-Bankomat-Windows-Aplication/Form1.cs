@@ -13,6 +13,7 @@ namespace It_bank_Bankomat_Windows_Aplication
     public partial class Form1 : Form
     {
         ConnectToDatabase db = new ConnectToDatabase();
+        string accountID;
 
         public Form1()
         {
@@ -25,6 +26,7 @@ namespace It_bank_Bankomat_Windows_Aplication
             lblBalance.Visible = false;
             lblCardID.Visible = false;
             lblYourBalance.Visible = false;
+            btnWithdraw.Visible = false;
             txtCardID.Text = "Please Enter Your Card ID";
             txtPin.Text = "Please enter your pin";
 
@@ -96,12 +98,12 @@ namespace It_bank_Bankomat_Windows_Aplication
                 label1.Text = "PIN OK";
                 lblYourBalance.Visible = true;
                 lblBalance.Visible = true;
+                btnWithdraw.Visible = true;
                 lblBalance.Text = db.getBalance(txtCardID.Text);
 
                 lblCardID.Visible = true;
                 lblCardID.Text = "Card ID: " + txtCardID.Text;
             }
-
 
             else
             {
@@ -131,5 +133,13 @@ namespace It_bank_Bankomat_Windows_Aplication
         {
             txtCardID.Text = "Please Enter Your Card ID";
         }
+
+        private void btnWithdraw_Click(object sender, EventArgs e)
+        {
+            accountID = db.getAccountsID(txtCardID.Text);
+            WithdrawForm withForm = new WithdrawForm(accountID);
+            withForm.ShowDialog();
+        }
+
     }
 }
