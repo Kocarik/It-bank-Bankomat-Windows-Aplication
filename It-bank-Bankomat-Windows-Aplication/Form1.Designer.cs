@@ -44,6 +44,9 @@
             this.txtPin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblBalance = new System.Windows.Forms.Label();
+            this.lblCardID = new System.Windows.Forms.Label();
+            this.txtCardID = new System.Windows.Forms.TextBox();
+            this.lblYourBalance = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -170,7 +173,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(25, 14);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(318, 196);
             this.pictureBox1.TabIndex = 12;
@@ -178,15 +181,16 @@
             // 
             // txtPin
             // 
-            this.txtPin.Location = new System.Drawing.Point(106, 100);
+            this.txtPin.Location = new System.Drawing.Point(106, 102);
             this.txtPin.Name = "txtPin";
             this.txtPin.Size = new System.Drawing.Size(156, 20);
             this.txtPin.TabIndex = 13;
+            this.txtPin.Click += new System.EventHandler(this.txtPin_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 302);
+            this.label1.Location = new System.Drawing.Point(22, 302);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 14;
@@ -195,18 +199,51 @@
             // lblBalance
             // 
             this.lblBalance.AutoSize = true;
-            this.lblBalance.Location = new System.Drawing.Point(155, 42);
+            this.lblBalance.BackColor = System.Drawing.Color.Transparent;
+            this.lblBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblBalance.Location = new System.Drawing.Point(99, 36);
             this.lblBalance.Name = "lblBalance";
-            this.lblBalance.Size = new System.Drawing.Size(56, 13);
+            this.lblBalance.Size = new System.Drawing.Size(175, 37);
             this.lblBalance.TabIndex = 15;
             this.lblBalance.Text = "BALANCE";
+            // 
+            // lblCardID
+            // 
+            this.lblCardID.AutoSize = true;
+            this.lblCardID.Location = new System.Drawing.Point(103, 302);
+            this.lblCardID.Name = "lblCardID";
+            this.lblCardID.Size = new System.Drawing.Size(43, 13);
+            this.lblCardID.TabIndex = 16;
+            this.lblCardID.Text = "Card ID";
+            // 
+            // txtCardID
+            // 
+            this.txtCardID.Location = new System.Drawing.Point(106, 76);
+            this.txtCardID.Name = "txtCardID";
+            this.txtCardID.Size = new System.Drawing.Size(156, 20);
+            this.txtCardID.TabIndex = 17;
+            this.txtCardID.Click += new System.EventHandler(this.txtCardID_Click);
+            // 
+            // lblYourBalance
+            // 
+            this.lblYourBalance.AutoSize = true;
+            this.lblYourBalance.BackColor = System.Drawing.Color.Transparent;
+            this.lblYourBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblYourBalance.Location = new System.Drawing.Point(106, 12);
+            this.lblYourBalance.Name = "lblYourBalance";
+            this.lblYourBalance.Size = new System.Drawing.Size(156, 24);
+            this.lblYourBalance.TabIndex = 18;
+            this.lblYourBalance.Text = "YOUR BALANCE";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 361);
+            this.Controls.Add(this.lblYourBalance);
             this.Controls.Add(this.lblBalance);
+            this.Controls.Add(this.txtCardID);
+            this.Controls.Add(this.lblCardID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPin);
             this.Controls.Add(this.pictureBox1);
@@ -223,6 +260,7 @@
             this.Controls.Add(this.btn1);
             this.Controls.Add(this.btnDelete);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IT Bank Bankomat";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -249,6 +287,9 @@
         private System.Windows.Forms.TextBox txtPin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblBalance;
+        private System.Windows.Forms.Label lblCardID;
+        private System.Windows.Forms.TextBox txtCardID;
+        private System.Windows.Forms.Label lblYourBalance;
     }
 }
 

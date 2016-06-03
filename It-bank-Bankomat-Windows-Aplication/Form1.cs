@@ -13,25 +13,27 @@ namespace It_bank_Bankomat_Windows_Aplication
     public partial class Form1 : Form
     {
         ConnectToDatabase db = new ConnectToDatabase();
-        string cardID;
 
         public Form1()
         {
             InitializeComponent();
-            this.cardID = db.getCardID();
-            label1.Text = cardID;
-            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Visible = true;
             lblBalance.Visible = false;
+            lblCardID.Visible = false;
+            lblYourBalance.Visible = false;
+            txtCardID.Text = "Please Enter Your Card ID";
+            txtPin.Text = "Please enter your pin";
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             txtPin.Text = null;
+            txtCardID.Text = null;
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -86,9 +88,48 @@ namespace It_bank_Bankomat_Windows_Aplication
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
+            if (db.getCardPin(txtCardID.Text, txtPin.Text))
+            {
+                txtCardID.Visible = false;
+                txtPin.Visible = false;
+
+                label1.Text = "PIN OK";
+                lblYourBalance.Visible = true;
+                lblBalance.Visible = true;
+                lblBalance.Text = db.getBalance(txtCardID.Text);
+
+                lblCardID.Visible = true;
+                lblCardID.Text = "Card ID: " + txtCardID.Text;
+            }
+
+
+            else
+            {
+                txtCardID.Visible = true;
+                txtPin.Visible = true;
+
+                label1.Text = "BAD PIN";
+                lblBalance.Text = "";
+                lblCardID.Text = "";
+                db.insetIntobatAcess(int.Parse(txtCardID.Text));
+
+            }
 
         }
 
+        private void txtCardID_Click(object sender, EventArgs e)
+        {
+            txtCardID.Text = null;
+        }
 
+        private void txtPin_Click(object sender, EventArgs e)
+        {
+            txtPin.Text = null;
+        }
+
+        private void txtCardID_TextChanged(object sender, EventArgs e)
+        {
+            txtCardID.Text = "Please Enter Your Card ID";
+        }
     }
 }

@@ -52,25 +52,66 @@ namespace It_bank_Bankomat_Windows_Aplication
             }
         }
 
-        public string getCardID()
+        public bool getCardPin(string cardID, string cardPIN)
         {
-            string cardID = null;
+
             if (openConnection())
             {
-                string sqlQuery = "select * from pinaccess";
+                string sqlQuery = "select idc, pin from pinaccess where pin like '" + cardPIN + "'";
+
                 MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
-                    if (reader.Read())
+                    if (reader["idc"] + "" == cardID && reader["pin"] + "" == cardPIN)
                     {
-                        cardID = reader["idc"] + "";
-                        return cardID;
+                        closeConnection();
+                        return true;
                     }
                 }
             }
             closeConnection();
-            return cardID;
+            return false;
         }
+
+        public string getBalance(string cardID)
+        {
+            string balance = null;
+            if (openConnection())
+            {
+                string sqlQuery = "SELECT balance FROM accounts inner join cards on accounts.id = cards.ida where cards.id like '" + cardID + "'"; ;
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        balance = reader["balance"] + "";
+                        closeConnection();
+                        return balance;
+                    }
+                }
+            }
+            closeConnection();
+            return balance;
+        }
+
+        // insert into bat acess
+        public void insetIntobatAcess(int cardID)
+        {
+            if (openConnection())
+            {
+                string sqlQuery = "INSERT INTO invalidpinacess (idc, date) values (@cardID, @date )";
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+                cmd.Parameters.AddWithValue("@cardID", cardID);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                cmd.ExecuteNonQuery();
+                closeConnection();
+            }
+        }
+
+
+
 
     }
 }
