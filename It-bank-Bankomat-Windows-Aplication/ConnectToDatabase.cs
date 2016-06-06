@@ -96,6 +96,7 @@ namespace It_bank_Bankomat_Windows_Aplication
             return accountID;
         }
 
+        // get balance from database
         public string getBalance(string cardID)
         {
             string balance = null;
@@ -117,7 +118,7 @@ namespace It_bank_Bankomat_Windows_Aplication
             return balance;
         }
 
-
+        // windraw update balance
         public bool updateBalance(string accountID, float balance)
         {
             if (openConnection())
@@ -146,8 +147,42 @@ namespace It_bank_Bankomat_Windows_Aplication
             }
         }
 
+        // update pin code
+        public bool updatePinCode(string cardID, string newPinCode)
+        {
+            if (openConnection())
+            {
+                string sqlQuery = "Update pinaccess set pin = " + newPinCode + " where pinaccess.idc like '" + cardID + "'";
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+                cmd.Parameters.AddWithValue("@pin", newPinCode);
+                cmd.ExecuteNonQuery();
+                closeConnection();
+                return true;
+            }
+            return false;
+        }
 
 
+        public int getCountFrompinInvalidAcess(int cardID)
+        {
+            int invalidCountAcess = 0;
+            if (openConnection())
+            {
+                string sqlQuery = "SELECT COUNT(*) as pocet FROM invalidpinacess where idc like '" + cardID + "'";
+                MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        invalidCountAcess = reader.GetInt16("pocet");
+                        closeConnection();
+                        return invalidCountAcess;
+                    }
+                }
+            }
+            closeConnection();
+            return invalidCountAcess;
+        }
 
     }
 }

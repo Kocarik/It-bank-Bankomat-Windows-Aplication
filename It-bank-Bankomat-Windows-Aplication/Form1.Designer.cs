@@ -48,6 +48,8 @@
             this.txtCardID = new System.Windows.Forms.TextBox();
             this.lblYourBalance = new System.Windows.Forms.Label();
             this.btnWithdraw = new System.Windows.Forms.Button();
+            this.btnSetNewPincode = new System.Windows.Forms.Button();
+            this.lblInvalidCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -246,11 +248,32 @@
             this.btnWithdraw.UseVisualStyleBackColor = true;
             this.btnWithdraw.Click += new System.EventHandler(this.btnWithdraw_Click);
             // 
+            // btnSetNewPincode
+            // 
+            this.btnSetNewPincode.Location = new System.Drawing.Point(216, 141);
+            this.btnSetNewPincode.Name = "btnSetNewPincode";
+            this.btnSetNewPincode.Size = new System.Drawing.Size(156, 23);
+            this.btnSetNewPincode.TabIndex = 20;
+            this.btnSetNewPincode.Text = "Set new pin code";
+            this.btnSetNewPincode.UseVisualStyleBackColor = true;
+            this.btnSetNewPincode.Click += new System.EventHandler(this.btnSetNewPincode_Click);
+            // 
+            // lblInvalidCount
+            // 
+            this.lblInvalidCount.AutoSize = true;
+            this.lblInvalidCount.Location = new System.Drawing.Point(303, 339);
+            this.lblInvalidCount.Name = "lblInvalidCount";
+            this.lblInvalidCount.Size = new System.Drawing.Size(69, 13);
+            this.lblInvalidCount.TabIndex = 21;
+            this.lblInvalidCount.Text = "Invalid Count";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 361);
+            this.Controls.Add(this.lblInvalidCount);
+            this.Controls.Add(this.btnSetNewPincode);
             this.Controls.Add(this.btnWithdraw);
             this.Controls.Add(this.lblYourBalance);
             this.Controls.Add(this.lblBalance);
@@ -303,6 +326,8 @@
         private System.Windows.Forms.TextBox txtCardID;
         private System.Windows.Forms.Label lblYourBalance;
         private System.Windows.Forms.Button btnWithdraw;
+        private System.Windows.Forms.Button btnSetNewPincode;
+        private System.Windows.Forms.Label lblInvalidCount;
     }
 }
 

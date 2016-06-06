@@ -13,16 +13,18 @@ namespace It_bank_Bankomat_Windows_Aplication
     public partial class WithdrawForm : Form
     {
         ConnectToDatabase db = new ConnectToDatabase();
+        string accountID;
 
         public WithdrawForm(string accountID)
         {
             InitializeComponent();
             label1.Text = accountID;
+            this.accountID = accountID;
         }
 
         private void btnWithdraw_Click(object sender, EventArgs e)
         {
-            if(db.updateBalance(label1.Text, float.Parse(txtAmout.Text)))
+            if(db.updateBalance(accountID, float.Parse(txtAmout.Text)))
             {
                 MessageBox.Show("Withdraw sucefull!", "Update Balance Message");
             }
@@ -33,9 +35,9 @@ namespace It_bank_Bankomat_Windows_Aplication
             }
         }
 
-        private void pict5_Click(object sender, EventArgs e)
+        private void pict5_Click_1(object sender, EventArgs e)
         {
-            txtAmout.Text = "5";
+
         }
     }
 }

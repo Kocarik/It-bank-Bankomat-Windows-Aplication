@@ -14,6 +14,7 @@ namespace It_bank_Bankomat_Windows_Aplication
     {
         ConnectToDatabase db = new ConnectToDatabase();
         string accountID;
+        int invalidCount;
 
         public Form1()
         {
@@ -27,6 +28,7 @@ namespace It_bank_Bankomat_Windows_Aplication
             lblCardID.Visible = false;
             lblYourBalance.Visible = false;
             btnWithdraw.Visible = false;
+            btnSetNewPincode.Visible = false;
             txtCardID.Text = "Please Enter Your Card ID";
             txtPin.Text = "Please enter your pin";
 
@@ -95,10 +97,14 @@ namespace It_bank_Bankomat_Windows_Aplication
                 txtCardID.Visible = false;
                 txtPin.Visible = false;
 
+                invalidCount = db.getCountFrompinInvalidAcess(int.Parse(txtCardID.Text));
+                lblInvalidCount.Text = invalidCount.ToString();
+
                 label1.Text = "PIN OK";
                 lblYourBalance.Visible = true;
                 lblBalance.Visible = true;
                 btnWithdraw.Visible = true;
+                btnSetNewPincode.Visible = true;
                 lblBalance.Text = db.getBalance(txtCardID.Text);
 
                 lblCardID.Visible = true;
@@ -141,5 +147,10 @@ namespace It_bank_Bankomat_Windows_Aplication
             withForm.ShowDialog();
         }
 
+        private void btnSetNewPincode_Click(object sender, EventArgs e)
+        {
+            SetNewPincodeForm setnpin = new SetNewPincodeForm(txtCardID.Text);
+            setnpin.ShowDialog();
+        }
     }
 }

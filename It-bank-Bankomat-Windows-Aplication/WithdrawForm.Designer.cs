@@ -90,7 +90,7 @@
             this.pict5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pict5.TabIndex = 3;
             this.pict5.TabStop = false;
-            this.pict5.Click += new System.EventHandler(this.pict5_Click);
+            this.pict5.Click += new System.EventHandler(this.pict5_Click_1);
             // 
             // pict20
             // 
